@@ -81,11 +81,12 @@ todosDigitosIguales n | div n 10 == 0 = True
 
 -- Funciones auxiliares.
 digitoUnidades :: Integer -> Integer
-digitoUnidades a = a - (div a 10) * 10
+-- digitoUnidades a = a - (div a 10) * 10
+digitoUnidades a = mod a 10
 
 digitoDecenas :: Integer -> Integer
-digitoDecenas a = div (a - (div a 100) * 100) 10
-
+-- digitoDecenas a = div (a - (div a 100) * 100) 10
+digitoDecenas a = div (mod a 100) 10
 
 -- EJERCICIO 8 --
 
@@ -100,7 +101,7 @@ cantDigitos :: Integer -> Integer
 -- Requiere: n perteneciente a los naturales con el cero incluido.
 
 cantDigitos n | (0 <= n && n < 10) = 1
-              | otherwise = cantDigitos (div n 10) + 1
+              | otherwise = cantDigitos (eliminarDigitoUninidad n) + 1
 
 
 -- EJERCICIO 8 BIS --
