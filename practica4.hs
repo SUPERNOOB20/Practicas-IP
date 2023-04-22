@@ -199,8 +199,13 @@ factorial n | n == 0 = 1
 raizDe2Aprox :: Integer -> Float
 -- Requiere: n perteneciente a los naturales sin el cero.
 
-raizDe2Aprox n | n == 1 = 2                                         - 1
-               | otherwise = (2) + ((1) / (raizDe2Aprox (n-1)))     - 1
+raizDe2Aprox n = (auxiliarRaizDe2Aprox n) - 1
+
+auxiliarRaizDe2Aprox :: Integer -> Float
+-- Requiere: n perteneciente a los naturales sin el cero.
+
+auxiliarRaizDe2Aprox n | n == 1 = 2
+                       | otherwise = (2) + ((1) / (auxiliarRaizDe2Aprox (n-1)))
 
 
 -- EJERCICIO 13 --
