@@ -261,8 +261,6 @@ testeando a b = fromIntegral(a) / fromIntegral(b) -}
 
 -- EJERCICIO 16 --
 
-<<<<<<< HEAD
-=======
        -- ITEM A
 
 menorDivisor :: Integer -> Integer
@@ -316,7 +314,6 @@ auxiliarNEsimoPrimo numero contador | contador == 0 = numero - 1
                                           then (auxiliarNEsimoPrimo (numero + 1) (contador - 1))
                                           else (auxiliarNEsimoPrimo (numero + 1) (contador))
 
->>>>>>> working
 
 -- EJERCICIO 17 --
 
@@ -330,8 +327,6 @@ auxiliarEsFibonacci :: Integer -> Integer -> Bool
 auxiliarEsFibonacci n i | ((n /= 0) && (i == 0)) = False
                         | n == fibonacci i = True
                         | otherwise = auxiliarEsFibonacci n (i-1)
-<<<<<<< HEAD
-=======
 
 
 -- EJERCICIO 18 --
@@ -379,4 +374,3 @@ auxiliarPitagoras p m r | m == 0 = if ((p^2) + (0^2)) >= (r^2) then 1 else 0
                         | otherwise = (auxiliarPitagoras p (m-1) (r^2)) + (if (((p^2) + (m^2)) >= (r^2)) then 1 else 0)
 
 -- ARREGLAR !!!! ---
->>>>>>> working
