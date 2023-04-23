@@ -90,10 +90,13 @@ esMultiploDe :: Int -> Int -> Bool
 esMultiploDe a b = mod a b == 0
 
 digitoUnidades :: Int -> Int
-digitoUnidades a = a - (div a 10) * 10
+-- digitoUnidades a = a - (div a 10) * 10
+digitoUnidades a = mod a 10
 
 digitoDecenas :: Int -> Int
-digitoDecenas a = div (a - (div a 100) * 100) 10
+-- digitoDecenas a = div (a - (div a 100) * 100) 10
+digitoDecenas a = div (mod a 100) 10
+
 
 
 -- EJERCICIO 3 --

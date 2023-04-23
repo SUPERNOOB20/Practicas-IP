@@ -81,10 +81,12 @@ todosDigitosIguales n | div n 10 == 0 = True
 
 -- Funciones auxiliares.
 digitoUnidades :: Integer -> Integer
-digitoUnidades a = a - (div a 10) * 10
+-- digitoUnidades a = a - (div a 10) * 10
+digitoUnidades a = mod a 10
 
 digitoDecenas :: Integer -> Integer
-digitoDecenas a = div (a - (div a 100) * 100) 10
+-- digitoDecenas a = div (a - (div a 100) * 100) 10
+digitoDecenas a = div (mod a 100) 10
 
 
 -- EJERCICIO 8 --
@@ -252,12 +254,69 @@ auxiliarSumaRacionales :: Integer -> Integer -> Float
 auxiliarSumaRacionales p m | m == 1 = (fromIntegral p) / 1
                            | otherwise = (auxiliarSumaRacionales p (m-1)) + ((fromIntegral p) / (fromIntegral m))
 
+-- CONSULTAR SOBRE fromIntegral !!!!!! --
 {- testeando :: Integer -> Integer -> Float
 testeando a b = fromIntegral(a) / fromIntegral(b) -}
 
 
 -- EJERCICIO 16 --
 
+<<<<<<< HEAD
+=======
+       -- ITEM A
+
+menorDivisor :: Integer -> Integer
+-- Requiere: n natural sin incluir al cero.
+-- Busca el menor divisor de n mayor o igual a 2.
+menorDivisor 1 = 1
+menorDivisor n = menorDivisorAPartirDe n 2
+
+menorDivisorAPartirDe :: Integer -> Integer -> Integer
+-- Requiere: n, i natural sin incluir al cero y 1<=i<=n.
+-- Busca el menor divisor a partir de 2.
+menorDivisorAPartirDe n i | i == n = n
+                          | otherwise = if mod n i == 0 then i else menorDivisorAPartirDe n (i+1)
+
+
+       -- ITEM B --
+
+esPrimo :: Integer -> Bool
+-- Requiere: n perteneciente a los naturales sin incluir al cero.
+esPrimo n = if menorDivisor n == n then True else False
+
+
+       -- ITEM C --
+
+sonCoprimos :: Integer -> Integer -> Bool
+-- Requiere: a, b naturales sin incluir al cero.
+sonCoprimos a b = auxiliarSonCoprimos a b (maximoEntre a b)
+
+auxiliarSonCoprimos :: Integer -> Integer -> Integer -> Bool
+-- Requiere: a, b, i naturales sin incluir al cero.
+auxiliarSonCoprimos a b i | i == 1 = True
+                          | otherwise = not(mod a i == 0 && mod b i == 0) && auxiliarSonCoprimos a b (i-1)
+
+maximoEntre :: (Ord t) => t -> t -> t
+maximoEntre a b  | a >= b = a
+                 | otherwise = b
+
+
+       -- ITEM D --
+
+nEsimoPrimo :: Integer -> Integer
+-- Requiere: n perteneciente a los naturales sin incluir al cero.
+nEsimoPrimo n = auxiliarNEsimoPrimo 1 n
+
+
+auxiliarNEsimoPrimo :: Integer -> Integer -> Integer
+-- Requiere: numero, contador naturales.
+-- Retorna el n-esimo (contador) primo contando desde (numero).
+auxiliarNEsimoPrimo numero contador | contador == 0 = numero - 1
+                                    | otherwise = if esPrimo numero
+                                          then (auxiliarNEsimoPrimo (numero + 1) (contador - 1))
+                                          else (auxiliarNEsimoPrimo (numero + 1) (contador))
+
+>>>>>>> working
 
 -- EJERCICIO 17 --
 
@@ -271,3 +330,53 @@ auxiliarEsFibonacci :: Integer -> Integer -> Bool
 auxiliarEsFibonacci n i | ((n /= 0) && (i == 0)) = False
                         | n == fibonacci i = True
                         | otherwise = auxiliarEsFibonacci n (i-1)
+<<<<<<< HEAD
+=======
+
+
+-- EJERCICIO 18 --
+
+mayorDigitoPar :: Integer -> Integer
+-- Requiere: n perteneciente a los naturales sin el cero.
+mayorDigitoPar 0 = 0
+mayorDigitoPar n = auxiliarMayorDigitoEspecial n 8 (-2)
+
+
+tieneDigitoIgualAi :: Integer -> Integer -> Bool
+-- Requiere: n perteneciente a los naturales incluyendo al cero. i un numero natural incluyendo al cero de un digito.
+tieneDigitoIgualAi n i | n == 0 = False
+                       | otherwise = if (digitoUnidades n) == i then True else (tieneDigitoIgualAi (eliminarDigitoUninidad n) (i))
+
+auxiliarMayorDigitoEspecial :: Integer -> Integer -> Integer -> Integer
+-- Requiere: n perteneciente a los naturales incluyendo al cero. i numero natural inclyendo al cero y par. rSalto (reduccion) entero negativo.
+-- n es el numero a evaluar. i es el primer digito a verificar igualdad. rSalto es un numero negativo que va a ir restando al i. 
+auxiliarMayorDigitoEspecial n i rSalto | i <= rSalto = (-1)
+                                       | otherwise = if (tieneDigitoIgualAi n i) then i else (auxiliarMayorDigitoEspecial n (i + rSalto) rSalto)
+
+
+-- EJERCICIO 19 --
+
+-- EJERCICIO 20 --
+
+-- EJERCICIO 21 --
+
+--pitagoras :: Integer -> Integer -> Integer -> Integer
+-- Requiere m, n, r perteneciente a los naturales incluyendo al cero.
+
+-- ARREGLAR !!!! ---
+
+pitagoras :: Integer -> Integer -> Integer -> Integer
+-- Requiere: Requiere m, n, r perteneciente a los naturales incluyendo al cero.
+-- Sumatoria de p=0 hasta n de auxiliarPitagoras.
+pitagoras n m r | n == 0 = auxiliarPitagoras 0 m r
+                | otherwise = pitagoras (n-1) m r + auxiliarPitagoras n m r
+
+
+auxiliarPitagoras :: Integer -> Integer -> Integer -> Integer
+-- Requiere: Requiere m, n, r perteneciente a los naturales incluyendo al cero.
+-- Sumatoria de q=0 hasta m de (if (p^2) + (q^2) >= (r^2) then 1 else 0) . p esta fijo (cte) y se itera la q respecto a la m. r constante.
+auxiliarPitagoras p m r | m == 0 = if ((p^2) + (0^2)) >= (r^2) then 1 else 0
+                        | otherwise = (auxiliarPitagoras p (m-1) (r^2)) + (if (((p^2) + (m^2)) >= (r^2)) then 1 else 0)
+
+-- ARREGLAR !!!! ---
+>>>>>>> working
