@@ -158,24 +158,22 @@ g1 n | n == 0 = 1
      | otherwise = g1 (n-1) + 2^n
 
 f2 :: Integer -> Float -> Float
--- Requiere: n perteneciente a los naturales sin el cero.
+-- Requiere: n perteneciente a los naturales sin el cero, q real.
 f2 n q | q/=1 = (q^(n+1)-q) / (q-1)
        | otherwise = 1
 
 g2 :: Integer -> Float -> Float
--- Requiere: n perteneciente a los naturales sin el cero.
+-- Requiere: n perteneciente a los naturales sin el cero, q real.
 g2 n q | n == 1 = q
        | otherwise = g2 (n-1) q + (q^n)
 
-{- f3 :: Integer -> Float -> Float
--- Requiere: n perteneciente a los naturales con el cero incluido.
-f3 n q | abs (n) == 1 = fromIntegral (n) + 1
-       | otherwise = ((q^(2*n+1)) - 1) / ((q^2) - 1)
+f3 :: Integer -> Float -> Float
+-- Requiere: n perteneicente a los naturales con el cero incluido, q Real.
+f3 n q = f2 (2*n) q
 
-g3 :: Integer -> Float -> Float
--- Requiere: n perteneciente a los naturales con el cero incluido.
-g3 n q | n == 1 = q
-       |  -}
+f4 :: Integer -> Float -> Float
+f4 n q = (f3 n q) - (f2 (n-1) q)
+
 
 -- EJERCICIO 11 --
 
@@ -209,4 +207,51 @@ auxiliarRaizDe2Aprox n | n == 1 = 2
 
 
 -- EJERCICIO 13 --
+
+sumatoriaEj13 :: Integer -> Integer -> Integer
+-- Requiere: n, m perteneciente a los naturales sin el cero.
+-- Sumatoria de i=1 hasta n de auxiliarSumatoriaEj13.
+sumatoriaEj13 n m | n == 1 = auxiliarSumatoriaEj13 1 m
+              | otherwise = sumatoriaEj13 (n-1) m + auxiliarSumatoriaEj13 n m
+
+auxiliarSumatoriaEj13 :: Integer -> Integer -> Integer
+-- Requiere: m perteneciente a los naturales sin el cero.
+-- Sumatoria de j=1 hasta m de i^j. i esta fijo (cte) y se itera la j.
+auxiliarSumatoriaEj13 i m | m == 1 = i^1
+                      | otherwise = auxiliarSumatoriaEj13 i (m-1) + (i^m)
+
+
+-- EJERCICIO 14 --
+
+sumaPotencias :: Integer -> Integer -> Integer -> Integer
+-- Requiere: q natural incluiyendo al cero. n, m naturales sin el cero.
+-- Sumatoria de a=1 hasta n de auxiliarSumaPotencias.
+sumaPotencias q n m | n == 1 = auxiliarSumaPotencias q 1 m
+                    | otherwise = sumaPotencias q (n-1) m + auxiliarSumaPotencias q n m
+
+
+auxiliarSumaPotencias :: Integer -> Integer -> Integer -> Integer
+-- Requiere: q natural incluiyendo al cero. a, m naturales sin el cero.
+-- Sumatoria de b=1 hasta m de (q^a) * (q^b). a esta fijo (cte) y se itera la b
+auxiliarSumaPotencias q a m | m == 1 = (q^a) * (q^1)
+                            | otherwise = auxiliarSumaPotencias q a (m-1) + (q^a) * (q^m)
+
+
+-- EJERCICO 15 --
+
+sumaRacionales :: Integer -> Integer -> Float
+-- Requiere: n, m pertenecientes a los naturales sin el cero.
+
+sumaRacionales n m | n == 1 = auxiliarSumaRacionales 1 m
+                   | otherwise = sumaRacionales (n-1) m + auxiliarSumaRacionales n m
+
+
+auxiliarSumaRacionales :: Integer -> Integer -> Float
+-- Requiere: m perteneciente a los naturales sin el cero.
+-- Sumatoria de q=1 hasta m de p/q. p esta fijo (cte) y se itera la q
+auxiliarSumaRacionales p m | m == 1 = (fromIntegral p) / 1
+                           | otherwise = (auxiliarSumaRacionales p (m-1)) + ((fromIntegral p) / (fromIntegral m))
+
+{- testeando :: Integer -> Integer -> Float
+testeando a b = fromIntegral(a) / fromIntegral(b) -}
 
