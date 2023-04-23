@@ -351,14 +351,40 @@ auxiliarMayorDigitoEspecial n i rSalto | i <= rSalto = (-1)
 
 -- EJERCICIO 19 --
 
+       -- COMPLETAR, PENDIENTE --
+
+
 -- EJERCICIO 20 --
+
+       -- COMPLETAR, PENDIENTE --
+
 
 -- EJERCICIO 21 --
 
---pitagoras :: Integer -> Integer -> Integer -> Integer
--- Requiere m, n, r perteneciente a los naturales incluyendo al cero.
+pitagoras :: Integer -> Integer -> Integer -> Integer
+-- Requiere: n, m, r natural incluyendo al cero.
+pitagoras n m r = iteradorP n m r
 
--- ARREGLAR !!!! ---
+
+iteradorP :: Integer -> Integer -> Integer -> Integer
+-- Requiere: n, m, r natural incluyendo al cero.
+-- p variable que va desde p=1 hasta p=n. r fijo.
+-- Sumatoria desde p=0 hasta p=n de iteradorQ.
+iteradorP n m r | n == 0 = iteradorQ 0 m r
+                | otherwise = (iteradorP (n-1) m r) + (iteradorQ n m r)
+
+iteradorQ :: Integer -> Integer -> Integer -> Integer
+-- Requiere: n, m, r natural incluyendo al cero.
+-- p fijo, q variable que va desde desde q=1 hasta q=m. r fijo.
+-- Sumatoria desde q=0 hasta q=m de (if p^2 + q^2 <= r^2 then 1 else 0).
+iteradorQ p m r | m == 0 = if (p^2) + (0^2) <= (r^2) then 1 else 0
+                | otherwise = (if (p^2) + (m^2) <= (r^2) then 1 else 0) + iteradorQ p (m-1) r
+
+
+-- CODIGO QUE NO FUNCIONA, DESPUÉS INTENTAR DE ENTEDER EL POR QUÉ --
+
+{- pitagoras :: Integer -> Integer -> Integer -> Integer
+-- Requiere m, n, r perteneciente a los naturales incluyendo al cero.
 
 pitagoras :: Integer -> Integer -> Integer -> Integer
 -- Requiere: Requiere m, n, r perteneciente a los naturales incluyendo al cero.
@@ -371,6 +397,6 @@ auxiliarPitagoras :: Integer -> Integer -> Integer -> Integer
 -- Requiere: Requiere m, n, r perteneciente a los naturales incluyendo al cero.
 -- Sumatoria de q=0 hasta m de (if (p^2) + (q^2) <= (r^2) then 1 else 0) . p esta fijo (cte) y se itera la q respecto a la m. r constante.
 auxiliarPitagoras p m r | m == 0 = if ((p^2) + (0^2)) <= (r^2) then 1 else 0
-                        | otherwise = (auxiliarPitagoras p (m-1) (r^2)) + (if (((p^2) + (m^2)) <= (r^2)) then 1 else 0)
+                        | otherwise = (auxiliarPitagoras p (m-1) (r^2)) + (if (((p^2) + (m^2)) <= (r^2)) then 1 else 0) -}
 
--- ARREGLAR !!!! ---
+-- CODIGO QUE NO FUNCIONA, DESPUÉS INTENTAR DE ENTEDER EL POR QUÉ --
