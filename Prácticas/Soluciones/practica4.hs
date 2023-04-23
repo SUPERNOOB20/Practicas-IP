@@ -255,3 +255,19 @@ auxiliarSumaRacionales p m | m == 1 = (fromIntegral p) / 1
 {- testeando :: Integer -> Integer -> Float
 testeando a b = fromIntegral(a) / fromIntegral(b) -}
 
+
+-- EJERCICIO 16 --
+
+
+-- EJERCICIO 17 --
+
+esFibonacci :: Integer -> Bool
+-- Requiere n perteneciente a los naturales incluyendo al cero.
+-- OBS: Funciona pero es lento.
+esFibonacci n = auxiliarEsFibonacci n (n+1)
+
+auxiliarEsFibonacci :: Integer -> Integer -> Bool
+-- Requiere n, i perteneciente a los naturales incluyendo al cero.
+auxiliarEsFibonacci n i | ((n /= 0) && (i == 0)) = False
+                        | n == fibonacci i = True
+                        | otherwise = auxiliarEsFibonacci n (i-1)
