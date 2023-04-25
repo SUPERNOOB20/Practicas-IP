@@ -148,6 +148,19 @@ checkeoSimetricoCapicua :: Integer -> Integer -> Bool
 checkeoSimetricoCapicua n i = iesimoDigito n i == iesimoDigitoOrdenado n i
 
 
+-- EJERCICIO 9 BIS --
+       -- Solución alternativa a esCapicua.
+
+esCapicuaBIS :: Integer -> Bool
+-- Requiere: n>= 0
+esCapicuaBIS n = n == numReverse n
+
+numReverse :: Integer -> Integer
+-- Requiere: n >= 0
+numReverse n | cantDigitos n == 1 = n
+             | otherwise = (digitoUnidades n) * (10^((cantDigitos n) - 1)) + numReverse (eliminarDigitoUninidad n)
+
+
 -- EJERCICIO 10 --
 
 f1 :: Integer -> Integer
