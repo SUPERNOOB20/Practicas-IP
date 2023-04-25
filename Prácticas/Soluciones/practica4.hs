@@ -143,7 +143,7 @@ eliminarPrimerYUltimoDigito n = eliminarUltimoDigito (eliminarDigitoUninidad (n)
 
 checkeoSimetricoCapicua :: Integer -> Integer -> Bool
 -- Checkea que dado un n, i. Que para ese i especifico, los digitos sean identicos tanto por derecha como por izquierda.
--- Require n >= 0 && 1 <= i <= cantDigitos n
+-- Require n >= 0 && 1 <= i <= cantDigitos n.
 
 checkeoSimetricoCapicua n i = iesimoDigito n i == iesimoDigitoOrdenado n i
 
