@@ -392,24 +392,3 @@ iteradorQ :: Integer -> Integer -> Integer -> Integer
 -- Sumatoria desde q=0 hasta q=m de (if p^2 + q^2 <= r^2 then 1 else 0).
 iteradorQ p m r | m == 0 = if (p^2) + (0^2) <= (r^2) then 1 else 0
                 | otherwise = (if (p^2) + (m^2) <= (r^2) then 1 else 0) + iteradorQ p (m-1) r
-
-
--- CODIGO QUE NO FUNCIONA, DESPUÉS INTENTAR DE ENTEDER EL POR QUÉ --
-
-{- pitagoras :: Integer -> Integer -> Integer -> Integer
--- Requiere m, n, r perteneciente a los naturales incluyendo al cero.
-
-pitagoras :: Integer -> Integer -> Integer -> Integer
--- Requiere: Requiere m, n, r perteneciente a los naturales incluyendo al cero.
--- Sumatoria de p=0 hasta n de auxiliarPitagoras.
-pitagoras n m r | n == 0 = auxiliarPitagoras 0 m r
-                | otherwise = pitagoras (n-1) m r + auxiliarPitagoras n m r
-
-
-auxiliarPitagoras :: Integer -> Integer -> Integer -> Integer
--- Requiere: Requiere m, n, r perteneciente a los naturales incluyendo al cero.
--- Sumatoria de q=0 hasta m de (if (p^2) + (q^2) <= (r^2) then 1 else 0) . p esta fijo (cte) y se itera la q respecto a la m. r constante.
-auxiliarPitagoras p m r | m == 0 = if ((p^2) + (0^2)) <= (r^2) then 1 else 0
-                        | otherwise = (auxiliarPitagoras p (m-1) (r^2)) + (if (((p^2) + (m^2)) <= (r^2)) then 1 else 0) -}
-
--- CODIGO QUE NO FUNCIONA, DESPUÉS INTENTAR DE ENTEDER EL POR QUÉ --
