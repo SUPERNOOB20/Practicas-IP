@@ -219,3 +219,34 @@ ordenarDecreciente s = (maximo s) : (ordenarDecreciente (quitar (maximo s) s))
 -- EJERCICIO 4 --
 
     -- ITEM 1 --
+
+sacarBlancosRepetidos :: [Char] -> [Char]
+sacarBlancosRepetidos [] = []
+sacarBlancosRepetidos [a] = [a]
+sacarBlancosRepetidos (x:xs) = if ((x == ' ') && (head xs == ' ')) then (sacarBlancosRepetidos xs) else (x) : (sacarBlancosRepetidos xs)
+
+
+{-     -- ITEM 2 --
+
+{- contarPalabras :: [Char] -> Integer
+contarPalabras [] = 0
+contarPalabras s = if head (sacarBlancosRepetidos s) -}
+
+    -- ITEM 3 --
+
+
+    -- ITEM 4 --
+
+{- palabras :: [Char] -> [[Char]]
+palabras [] = []
+palabras (x:xs) = if x /= ' ' then x : palabras xs else palabras xs -}
+
+
+-- EJERCICIO 5 --
+
+--nat2bin :: Integer -> [Integer]
+-- nat2bin n = 
+
+
+testeando :: t -> [t]
+testeando x = [x] -}
