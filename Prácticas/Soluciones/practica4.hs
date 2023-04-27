@@ -116,6 +116,7 @@ iesimoDigitoOrdenado n i = iesimoDigito n ((cantDigitos n) - (i) + 1)
 
 
 -- EJERCICIO 9 --
+       -- Mirar ejercicio 9 bis para una mejor solución --
 
 esCapicua :: Integer -> Bool
 -- Requiere: n perteneciente a los naturales con el cero incluido.
