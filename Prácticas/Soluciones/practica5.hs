@@ -83,4 +83,73 @@ hayRepetidos (x:xs) = (pertenece x xs) || (hayRepetidos xs)
 
     -- ITEM 5 --
 
--- quitar :: (Eq t) => t -> [t] -> [t]
+quitar :: (Eq t) => t -> [t] -> [t]
+-- Requiere: True
+-- Elimina, de existir, la primera (solamente) aparición del elemento e.
+quitar _ [] = []
+quitar e (x:xs) = if e == x then xs else (x) : (quitar e xs)
+
+
+    -- ITEM 6 --
+
+quitarTodos :: (Eq t) => t -> [t] -> [t]
+-- Requiere: True
+quitarTodos _ [] = []
+quitarTodos e (x:xs) = if e == x then (quitarTodos e xs) else (x) : (quitarTodos e xs)
+-- Alternativa usando "quitar": quitarTodos e (x:xs) = if pertenece e (x:xs) then (quitarTodos (e) (quitar (e) (x:xs))) else (x:xs)
+
+
+    -- ITEM 7 --
+
+eliminarRepetidos :: (Eq t) => [t] -> [t]
+-- Requiere: True
+eliminarRepetidos s | todosDistintos s = s  
+eliminarRepetidos (x:xs) = (x) : (if pertenece x xs then (eliminarRepetidos (quitarTodos x xs)) else (eliminarRepetidos xs))
+
+
+    -- ITEM 8 --
+
+mismosElementos :: (Eq t) => [t] -> [t] -> Bool
+-- Requiere: True
+mismosElementos s r = (esContenido s r) && (esContenido r s)
+
+{- Otra opción, desconozco cual es mejor.
+mismosElementos s r = (esContenido a b) && (esContenido b a)
+    where a = eliminarRepetidos s
+          b = eliminarRepetidos r -}
+
+
+esContenido :: (Eq t) => [t] -> [t] -> Bool
+-- Requiere: True
+-- Quiero ver que a contenido en b. o sea cada elemento de a esta también en b.
+esContenido [] b = True
+esContenido (x:xs) b = if pertenece x b then esContenido xs b else False
+
+
+    -- ITEM 9 --
+
+capicua :: (Eq t) => [t] -> Bool
+capicua s = s == reverso s
+
+
+-- EJERCICIO 3 --
+
+    -- ITEM 1 --
+
+sumatoria :: [Integer] -> Integer
+-- Requiere: True
+sumatoria [] = 0
+sumatoria (x:xs) = x + sumatoria xs
+
+
+    -- ITEM 2 --
+
+productoria :: [Integer] -> Integer
+-- Requiere: True
+productoria [] = 1
+productoria (x:xs) = x * productoria xs
+
+
+    -- ITEM 3 --
+
+-- maximo :: [Integer] -> Integer
