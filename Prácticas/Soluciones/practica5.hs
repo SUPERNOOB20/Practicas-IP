@@ -205,9 +205,15 @@ multiplosDeN n (x:xs) = if mod x n == 0 then x : multiplosDeN n xs else multiplo
 
     -- ITEM 9 --
 
-ordenar :: [Integer] -> [Integer]
-ordenar [] = []
-ordenar (x:xs) = (maximo (x:xs)) : (ordenar (quitar (maximo (x:xs)) (x:xs)))
+-- El ejercicio pedia que se llame ordenar pero ordenarCreciente es un nombre más expresivo.
+ordenarCreciente :: [Integer] -> [Integer]
+-- Requiere: True
+ordenarCreciente s = reverso (ordenarCreciente s)
+
+ordenarDecreciente :: [Integer] -> [Integer]
+-- Requiere: True
+ordenarDecreciente [] = []
+ordenarDecreciente s = (maximo s) : (ordenarDecreciente (quitar (maximo s) s))
 
 
 -- EJERCICIO 4 --
