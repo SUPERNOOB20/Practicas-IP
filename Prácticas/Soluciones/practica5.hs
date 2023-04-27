@@ -152,4 +152,64 @@ productoria (x:xs) = x * productoria xs
 
     -- ITEM 3 --
 
--- maximo :: [Integer] -> Integer
+maximo :: [Integer] -> Integer
+-- Requiere: Lista no vacía.
+maximo [a] = a
+maximo (x:xs) = maximoEntre (x) (maximo xs)
+
+
+maximoEntre :: (Ord t) => t -> t -> t
+-- Requiere: True
+maximoEntre a b  | a >= b = a
+                 | otherwise = b
+
+
+    -- ITEM 4 --
+
+sumarN :: Integer -> [Integer] -> [Integer]
+-- Requiere: True
+-- Le suma n a cada elemento de la lista s, devuelve una lista en el mismo orden.
+sumarN n []  = []
+sumarN n (x:xs) = (x + n) : (sumarN n xs)
+
+
+    -- ITEM 5 --
+
+sumarElPrimero :: [Integer] -> [Integer]
+-- Requiere: Lista no vacía.
+sumarElPrimero s = sumarN (head s) s
+
+
+    -- ITEM 6 --
+
+sumarElUltimo :: [Integer] -> [Integer]
+-- Requiere: Lista no vacía.
+sumarElUltimo s = sumarN (ultimo s) s
+
+
+    -- ITEM 7 --
+
+pares :: [Integer] -> [Integer]
+-- Requiere: True
+pares s = multiplosDeN 2 s
+
+
+    -- ITEM 8 --
+
+multiplosDeN :: Integer -> [Integer] -> [Integer]
+-- Requiere: True
+multiplosDeN _ [] = []
+multiplosDeN n (x:xs) = if mod x n == 0 then x : multiplosDeN n xs else multiplosDeN n (quitar x (x:xs))
+-- Alternativa, supongo que menos eficiente: pares (x:xs) = if mod x n == 0 then x : pares xs else pares xs
+
+
+    -- ITEM 9 --
+
+ordenar :: [Integer] -> [Integer]
+ordenar [] = []
+ordenar (x:xs) = (maximo (x:xs)) : (ordenar (quitar (maximo (x:xs)) (x:xs)))
+
+
+-- EJERCICIO 4 --
+
+    -- ITEM 1 --
