@@ -244,8 +244,11 @@ palabras (x:xs) = if x /= ' ' then x : palabras xs else palabras xs -}
 
 -- EJERCICIO 5 --
 
---nat2bin :: Integer -> [Integer]
--- nat2bin n = 
+    -- ITEM 1 --
+
+-- Solución propuesta durante la clase práctica
+nat2bin :: Integer -> [Integer]
+nat2bin n = nat2bin (div n 2) ++ [mod n 2]
 
 
 testeando :: t -> [t]
